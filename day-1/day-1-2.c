@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
       turn_dial = rotate_left(buffer, dial);
       dial = turn_dial.new_pos;
       counter += turn_dial.pass_zero;
-      printf("Dial turned: %sDial is at: %d\nCounter is at: %d\n\n", buffer, dial , counter);
 
       // Check to see if the dial is at 0
       if (dial == 0) {
@@ -54,7 +53,6 @@ int main(int argc, char *argv[])
       turn_dial = rotate_right(buffer, dial);
       dial = turn_dial.new_pos;
       counter += turn_dial.pass_zero;
-      printf("Dial turned: %sDial is at: %d\nCounter is at: %d\n\n", buffer, dial , counter);
 
       // Check to see if the dial is at 0
       if (dial == 0) {
@@ -86,10 +84,10 @@ struct dial rotate_left(char buffer[], int dial) {
   // Update the dial position
   rotate.new_pos = dial - x;
 
-  // Take care of looping past 0
-  if (rotate.new_pos < 0) {
+  // Take care of looping past 0 and adds 1 to the counter only if it doesn't land on zero. Those get counted in the main function
+  if (rotate.new_pos <= 0) {
     rotate.new_pos += 100;
-    if (rotate.new_pos != 0) {
+    if (rotate.new_pos != 0 && dial != 0) {
       rotate.pass_zero++;
     }
   }
@@ -115,9 +113,9 @@ struct dial rotate_right(char buffer[], int dial) {
   rotate.new_pos = dial + x;
 
   // Take care of looping past 0
-  if (rotate.new_pos > 99) {
-    rotate.new_pos -= 100;
-    if (rotate.new_pos != 0) {
+  if (rotate.new_pos <= 0) {
+    rotate.new_pos += 100;
+    if (rotate.new_pos != 0 && dial != 0) {
       rotate.pass_zero++;
     }
   }
