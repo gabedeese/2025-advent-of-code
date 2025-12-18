@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 8 // Max string length read from the file.
@@ -7,16 +7,15 @@
 int rotate_left(char buffer[], int dial);
 int rotate_right(char buffer[], int dial);
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   // Check for correct usage of args.
   if (argc < 2) {
     fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
     return 1;
   }
 
-  int counter = 0; // Count every time the dial is left at 0
-  int dial = 50; // Dial starts pointing at 50
+  int counter = 0;  // Count every time the dial is left at 0
+  int dial = 50;    // Dial starts pointing at 50
   char buffer[MAX]; // Buffer to hold the string from the input.txt
   FILE *fp = fopen(argv[1], "r"); // File pointer to input.txt
 
@@ -56,7 +55,8 @@ int main(int argc, char *argv[])
   return 0;
 }
 
-// Convert the string to an integer and subtract that from the current dial position
+// Convert the string to an integer and subtract that from the current dial
+// position
 int rotate_left(char buffer[], int dial) {
 
   // Gets the mod of the buffer by 100 since rotating 100 is redundant

@@ -85,7 +85,7 @@ struct dial rotate_left(char buffer[], int dial) {
   rotate.new_pos = dial - x;
 
   // Take care of looping past 0 and adds 1 to the counter only if it doesn't land on zero. Those get counted in the main function
-  if (rotate.new_pos <= 0) {
+  if (rotate.new_pos < 0) {
     rotate.new_pos += 100;
     if (rotate.new_pos != 0 && dial != 0) {
       rotate.pass_zero++;
@@ -113,8 +113,8 @@ struct dial rotate_right(char buffer[], int dial) {
   rotate.new_pos = dial + x;
 
   // Take care of looping past 0
-  if (rotate.new_pos <= 0) {
-    rotate.new_pos += 100;
+  if (rotate.new_pos > 99) {
+    rotate.new_pos -= 100;
     if (rotate.new_pos != 0 && dial != 0) {
       rotate.pass_zero++;
     }
